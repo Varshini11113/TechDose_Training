@@ -27,3 +27,25 @@ public:
         return nums[n/2];
     }
 };
+
+//Solution 2 (atleast one element count will be 1)
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        int count = 1, major = nums[0];
+        for(int i = 1; i<n; i++){
+            if(major == nums[i]){
+                count++;
+            }
+            else{
+                count--;
+                if(count == 0){
+                major = nums[i];
+                count = 1;
+                }
+            }
+        }
+        return major;
+};

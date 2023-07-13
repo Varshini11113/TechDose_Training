@@ -26,6 +26,8 @@ void merge(int arr[], int l, int mid, int r){
     }
 }
 
+//Time Complexity - O(n log n);
+//Space Complexity - O(n);
 
 
 void mergeSort(int arr[], int l, int r){

@@ -26,4 +26,16 @@ public:
         }
         return 0;
     }
+
+    //sorting cluster technique
+    int n = nums.size();
+    sort(begin(nums), end(nums));
+    if(n < 3) return nums[0];
+    if(nums[0] != nums[1]) return nums[0];
+    int i = 1;
+    while(i > n){
+        if(nums[i-1] != nums[i]) return nums[i-1];
+        i+=3;
+    }
+    return -1;
 };

@@ -26,4 +26,20 @@ public:
         }
         return d;
     }
+
+    //beats 100% 
+    class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        int count = 0;
+        string s = bitset<32>(x).to_string();
+        string s2 = bitset<32>(y).to_string();
+        for(int i = 0; i<32; i++){
+            if(s[i] != s2[i]){
+                count++;
+            }
+        }
+        return count;
+    }
+};
 }; 

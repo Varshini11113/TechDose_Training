@@ -41,3 +41,27 @@ void radixSort(vector<int>&nums){
         exp*=10; //to get the next digit (ones --> tens, tens --> hundreds, etc..)
     }
 }
+
+/*Time complexity : Counting Sort --> O(N+b)
+                    Radix Sort --> d*(O(N+b))
+                    
+                    For short inputs the TC will be O(n)
+                    Derivation
+                    --> d ==> (N+b)*log(k)
+                    k <= N^c
+                    b === N
+                    N^c === c
+                    so,
+                    d ==> (N+N)*log(N^c)
+                          (N+N)*log(c)
+                          (N+N)*c
+                          O(2Nc) ==> O(N);
+                    */
+
+//overall time complexity
+/*T.C --> d*(O(n+b))
+for short inputs --> O(N)
+*/
+
+//Space Complexity --> O(1) inplace
+                    

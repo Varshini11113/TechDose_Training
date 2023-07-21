@@ -20,3 +20,10 @@ void quickSort(vector<int>&nums, int low, int high){
         quickSort(nums, pIdx+1, high);
     }
 }
+
+/*Time complexity
+Best Case --> O(n log n) [middle element is the pivot]
+Worst Case --> O(n^2) [array is already sorted so no swapping involved (or) if pivot element remains at the same place]
+*/
+
+/*Space Complexity --> O(1) in place*/

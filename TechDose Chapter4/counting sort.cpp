@@ -29,3 +29,6 @@ void countSort(vector<int>&nums){
         output[i] = nums[i];
     }
 }
+
+//Time Complexity --> O(N + R + N) --> O(N + R)
+//Space Complexity --> O(1) inplace

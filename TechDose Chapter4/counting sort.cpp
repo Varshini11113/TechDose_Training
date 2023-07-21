@@ -9,14 +9,14 @@ Step3 --> traverse through the array and place the element in the output array*/
 
 void countSort(vector<int>&nums){
     int n = nums.size();
-    vector<int>output[n];
+    vector<int>output(n);
     vector<int>count(10,0);
     //step1
     for(int i = 0; i<n; i++){
         count[nums[i]]++;
     }
     //step2
-    for(int i = 1; i<n; i++){
+    for(int i = 1; i<10; i++){
         count[i] += count[i-1];
     }
     //step3

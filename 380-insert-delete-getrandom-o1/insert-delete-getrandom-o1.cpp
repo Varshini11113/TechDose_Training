@@ -2,7 +2,7 @@ class RandomizedSet {
 public:
     unordered_set<int>random;
     RandomizedSet() {
-        // size = 1000;
+
     }
     
     bool insert(int val) {
@@ -17,7 +17,7 @@ public:
         if(random.find(val) == random.end()){
             return false;
         }
-        random.erase(val);    
+        random.erase(val);
         return true;
     }
     

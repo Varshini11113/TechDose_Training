@@ -1,40 +1,20 @@
 class MyHashMap {
 public:
-    vector<list<pair<int, int>>> HashMap;
-    int size = 10000;
+    int arr[1000001];
     MyHashMap() {
-        HashMap.resize(size);
+        fill(arr, arr + 1000000, -1);
     }
     
     void put(int key, int value) {
-        auto& ll = HashMap[key % size];
-        for(auto& i : ll){
-            if(i.first == key){
-                i.second = value;
-                return;
-            }
-        }
-        ll.push_back({key, value});
+        arr[key] = value;
     }
     
     int get(int key) {
-        auto& ll = HashMap[key % size];
-        for(auto& i : ll){
-            if(i.first == key){
-                return i.second;
-            }
-        }
-        return -1;
+        return arr[key];
     }
     
     void remove(int key) {
-        auto& ll = HashMap[key % size];
-        for(auto& i : ll){
-            if(i.first == key){
-                ll.remove(i);
-                return;
-            }
-        }
+        arr[key] = -1;
     }
 };
 

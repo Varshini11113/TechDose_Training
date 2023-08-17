@@ -1,27 +1,25 @@
 class MyHashMap {
 public:
-        //creating the hash table
-        vector<list<pair<int, int>>> table;
-        int tableSize = 10000;
+    vector<list<pair<int, int>>> HashMap;
+    int size = 10000;
     MyHashMap() {
-        table.resize(tableSize);
+        HashMap.resize(size);
     }
     
     void put(int key, int value) {
-        //pointing to the index (linkedList)
-        auto& chain = table[key % tableSize];
-        for(auto& i : chain){
+        auto& ll = HashMap[key % size];
+        for(auto& i : ll){
             if(i.first == key){
                 i.second = value;
                 return;
             }
         }
-        chain.push_back({key, value});
+        ll.push_back({key, value});
     }
     
     int get(int key) {
-        auto& chain = table[key % tableSize];
-        for(auto& i : chain){
+        auto& ll = HashMap[key % size];
+        for(auto& i : ll){
             if(i.first == key){
                 return i.second;
             }
@@ -30,10 +28,10 @@ public:
     }
     
     void remove(int key) {
-        auto& chain = table[key % tableSize];
-        for(auto& i : chain){
+        auto& ll = HashMap[key % size];
+        for(auto& i : ll){
             if(i.first == key){
-                chain.remove(i);
+                ll.remove(i);
                 return;
             }
         }

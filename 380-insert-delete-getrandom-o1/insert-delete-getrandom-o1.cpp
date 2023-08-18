@@ -1,30 +1,32 @@
 class RandomizedSet {
 public:
-    unordered_set<int>random;
+    unordered_set<int>s;
     RandomizedSet() {
-
+        
     }
     
     bool insert(int val) {
-        if(random.find(val) == random.end()){
-            random.insert(val);
+        if(s.find(val) == s.end()){
+            s.insert(val);
             return true;
         }
         return false;
     }
     
     bool remove(int val) {
-        if(random.find(val) == random.end()){
+        if(s.find(val) == s.end()){
             return false;
         }
-        random.erase(val);
+        s.erase(val);
         return true;
     }
     
     int getRandom() {
-        auto it = random.begin();
-        int num = rand() % random.size();
-        while(num--) it++;
+        auto it = s.begin();
+        int num = rand() % s.size();
+        while(num--){
+            it++;
+        }
         return *it;
     }
 };

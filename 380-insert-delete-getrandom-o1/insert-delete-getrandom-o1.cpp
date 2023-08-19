@@ -1,6 +1,7 @@
 class RandomizedSet {
 public:
     unordered_set<int>s;
+    int size;
     RandomizedSet() {
         
     }
@@ -22,12 +23,12 @@ public:
     }
     
     int getRandom() {
-        auto it = s.begin();
+        auto i = s.begin();
         int num = rand() % s.size();
         while(num--){
-            it++;
+            i++;
         }
-        return *it;
+        return *i;
     }
 };
 

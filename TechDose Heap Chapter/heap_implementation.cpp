@@ -130,6 +130,37 @@ public:
         }
         std::cout << std::endl;
     }
+
+    //builtheap algo
+    void builtHeap(vector<int>&arr){
+        int n = arr.size() - 1;//1 indexed
+        for(int i=n/2 ;i>=1;--i ){
+            heapifyDown(arr, i);
+        }
+    }
+
+    //increase_key algo
+    void increase_key(vector<int>&arr, int i, int key){
+        if(key < arr[i]){
+            cout << "Violates the rule\n";
+            return false;
+        }
+        arr[i] = key;
+        while(i > 1 && arr[i] > arr[i/2]){
+            swap(arr[i], arr[i/2]);
+            i /= 2;
+        }
+    }
+
+    //decrease_key algo
+    void decrease_key(vector<int>&arr, int i, int key){
+        if(key > arr[i]){
+            cout<<"Violate the rule\n";
+            return false;
+        }
+        arr[i] = key;
+        heapifyDown(arr, i);
+    }
 };
 
 int main() {
@@ -142,6 +173,21 @@ int main() {
 
     std::cout << "Elements in descending order:" << std::endl;
     maxHeap.printDescendingOrder();
+
+
+    //Built heap algorithm
+    vector<int>arr(n+1);
+    cout<<"Getting the elements\n";
+    for(int i = 1; i<=n; i++){
+        cin >> arr[i];
+    }
+    builtHeap(arr);
+
+    //increase_key algorithm --> increassing the key value so that it moves upwards.
+    //boundary condition --> key should be grater than curr ele, else return false
+    int key, index;
+    cin >> key >> index;
+    increase_key(arr, index, key);
 
     return 0;
 }

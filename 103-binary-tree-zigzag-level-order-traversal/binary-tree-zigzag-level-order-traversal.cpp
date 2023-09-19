@@ -23,10 +23,10 @@ public:
             for(int i = 0; i<n; i++){
                 TreeNode *node = q.front();
                 q.pop();
-                int ind = flag ? i : n - i - 1;
+                int ind = flag ? i : n-i-1;
                 level[ind] = node->val;
                 if(node->left != NULL) q.push(node->left);
-                if(node->right != NULL) q.push(node->right);
+                if(node->right != NULL) q.push(node->right); 
             }
             flag = !flag;
             ans.push_back(level);

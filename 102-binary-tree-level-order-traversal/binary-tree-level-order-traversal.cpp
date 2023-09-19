@@ -12,7 +12,6 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        //to store the values we use
         vector<vector<int>>ans;
         if(root == NULL) return ans;
         queue<TreeNode*>q;

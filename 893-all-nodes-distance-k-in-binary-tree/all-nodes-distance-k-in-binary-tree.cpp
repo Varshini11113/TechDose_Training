@@ -11,20 +11,18 @@ class Solution {
 public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
         vector<int>ans;
-        unordered_map<int, TreeNode*>parent;
         queue<TreeNode*>q;
         q.push(root);
+        unordered_map<int, TreeNode*>parent;
         while(!q.empty()){
             int n = q.size();
             for(int i = 0; i<n; i++){
                 auto top = q.front();
                 q.pop();
-
                 if(top->left){
                     parent[top->left->val] = top;
-                    q.push(top->left); 
+                    q.push(top->left);
                 }
-
                 if(top->right){
                     parent[top->right->val] = top;
                     q.push(top->right);
@@ -33,7 +31,6 @@ public:
         }
 
         unordered_map<int, int>visited;
-        // queue<TreeNode*>q;
         q.push(target);
         while(k-- && !q.empty()){
             int n = q.size();
@@ -46,12 +43,10 @@ public:
                 if(top->left && !visited[top->left->val]){
                     q.push(top->left);
                 }
-
                 if(top->right && !visited[top->right->val]){
                     q.push(top->right);
-                } 
-
-                if(parent[top->val] && !visited[parent[top->val] -> val]){
+                }
+                if(parent[top->val] && !visited[parent[top->val]->val]){
                     q.push(parent[top->val]);
                 }
             }
@@ -61,6 +56,5 @@ public:
             q.pop();
         }
         return ans;
-        
     }
 };

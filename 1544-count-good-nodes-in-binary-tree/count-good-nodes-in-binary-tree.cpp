@@ -12,18 +12,18 @@
 class Solution {
 public:
     int count = 0;
-    int maxNode(TreeNode* root, int curr_max){
-        if(root == NULL) return 0;
-        if(root->val >= curr_max){
+    int dfs(TreeNode* node, int curr_max){
+        if(node == NULL) return 0;
+        if(node->val >= curr_max){
+            curr_max = node->val;
             count++;
-            curr_max = root->val;
         }
-        maxNode(root->left, curr_max);
-        maxNode(root->right, curr_max);
+        dfs(node->left, curr_max);
+        dfs(node->right, curr_max);
         return count;
     }
     int goodNodes(TreeNode* root) {
-        maxNode(root, root->val);
+        dfs(root, root->val);
         return count;
     }
 };

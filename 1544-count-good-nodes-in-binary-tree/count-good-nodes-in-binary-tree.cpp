@@ -15,8 +15,8 @@ public:
     int dfs(TreeNode* node, int curr_max){
         if(node == NULL) return 0;
         if(node->val >= curr_max){
-            curr_max = node->val;
             count++;
+            curr_max = node->val;
         }
         dfs(node->left, curr_max);
         dfs(node->right, curr_max);

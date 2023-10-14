@@ -1,10 +1,10 @@
 class Solution {
 public:
-    void dfs(int node, vector<int>&visited, vector<int>adj[]){
-        visited[node] = 1;
+    void dfs(int node, vector<int>&vis, vector<int>adj[]){
+        vis[node] = 1;
         for(auto it : adj[node]){
-            if(!visited[it]){
-                dfs(it, visited, adj);
+            if(!vis[it]){
+                dfs(it, vis, adj);
             }
         }
     }
@@ -19,15 +19,15 @@ public:
                 }
             }
         }
-        
-        vector<int>visited(n,0);
+
+        vector<int>vis(n,0);
         int count = 0;
         for(int i = 0; i<n; i++){
-            if(!visited[i]){
+            if(!vis[i]){
                 count++;
-                dfs(i, visited, adj);
+                dfs(i, vis, adj);
             }
         }
-    return count;
+        return count;
     }
 };

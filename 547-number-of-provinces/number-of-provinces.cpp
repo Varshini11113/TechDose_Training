@@ -1,5 +1,5 @@
 class Solution {
-public:
+private:
     void dfs(int node, vector<int>&vis, vector<int>adj[]){
         vis[node] = 1;
         for(auto it : adj[node]){
@@ -8,6 +8,7 @@ public:
             }
         }
     }
+public:
     int findCircleNum(vector<vector<int>>& isConnected) {
         int n = isConnected.size();
         vector<int>adj[n];
@@ -19,13 +20,12 @@ public:
                 }
             }
         }
-
         vector<int>vis(n,0);
         int count = 0;
         for(int i = 0; i<n; i++){
             if(!vis[i]){
-                count++;
                 dfs(i, vis, adj);
+                count++;
             }
         }
         return count;

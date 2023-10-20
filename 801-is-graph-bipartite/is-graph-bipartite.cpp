@@ -18,7 +18,6 @@ public:
         // for(int i = 0; i<n; i++){
         //     for(auto it : graph[i]){
         //         adj[it[0]].push_back(it[1]);
-        //         adj[it[1]].push_back(it[0]);
         //     }
         // }
         vector<int>color(n,-1);

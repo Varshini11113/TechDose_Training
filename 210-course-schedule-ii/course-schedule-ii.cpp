@@ -17,12 +17,12 @@ public:
             q.pop();
             ans.push_back(node);
             for(auto it : adj[node]){
-                if(--ind[it] == 0) q.push(it);
+                if(--ind[it] == 0){
+                    q.push(it);
+                }
             }
         }
         if(ans.size() == n) return ans;
-        else{
-            return vector<int>();
-        }
+        else return vector<int>();
     }
 };

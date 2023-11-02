@@ -20,6 +20,6 @@ public:
     int averageOfSubtree(TreeNode* root) {
         if(!root) return 0;
         int ans = averageOfSubtree(root->left) + averageOfSubtree(root->right);
-        return sum(root) / count(root) == root->val ? ans+1 : ans;
+        return sum(root)/count(root) == root->val ? ans+1 : ans;
     }
 };

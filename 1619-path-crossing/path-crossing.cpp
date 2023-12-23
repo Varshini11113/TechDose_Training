@@ -1,33 +1,35 @@
-class Solution {
+class Solution 
+{
 public:
-    bool isPathCrossing(string path) {
-        std::unordered_set<std::string> value_pairs;
-        value_pairs.insert("0,0");
-        
-        int x = 0, y = 0;
-        for (int i = 0; i < path.size(); ++i) {
-            if (path[i] == 'N') {
-                y += 1;
-            } else if (path[i] == 'S') {
-                y -= 1;
-            } else if (path[i] == 'W') {
-                x -= 1;
-            } else {
-                x += 1;
+    bool isPathCrossing(string path) 
+    {
+        int a = 0, b = 0;;
+        set<vector<int>> x;
+        x.insert({0, 0});
+        for (char i: path)
+        {
+            if (i == 'N')
+            {
+                b++;
+            } 
+            else if (i == 'E')
+            {
+                a++;
+            } 
+            else if (i == 'S')
+            {
+                b--;
             }
-
-            std::string current_pair = std::to_string(x) + "," + std::to_string(y);
-            if (value_pairs.find(current_pair) != value_pairs.end()) {
+            else 
+            {
+                a--;
+            }
+            if (x.find({a, b}) != x.end())
+            {
                 return true;
             }
-
-            value_pairs.insert(current_pair);
+            x.insert({a, b});
         }
-
         return false;
     }
 };
-
-
-
-

@@ -1,14 +1,17 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>ans;
         int n = nums.size();
         int p = 1<<n;
-        vector<vector<int>> ans(p);
-        for(int i = 0; i<p; i++){
-            for(int j = 0; j<n; j++){
-                if(i & (1<<j)) 
-                ans[i].push_back(nums[j]);
+        for(int mask = 0; mask<p; mask++){
+            vector<int>seb;
+            for(int i = 0; i<n; i++){
+                if(mask & (1<<i)){
+                    seb.push_back(nums[i]);
+                }
             }
+            ans.push_back(seb);
         }
         return ans;
     }

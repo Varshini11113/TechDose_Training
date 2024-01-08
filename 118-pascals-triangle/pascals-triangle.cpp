@@ -1,22 +1,22 @@
 class Solution {
 public:
-    vector<int>nCr(int row){
-        long long ans = 1;
-        vector<int>res;
-        res.push_back(1);
-        for(int i = 1; i<row; i++){
-            ans  *= (row - i);
-            ans /= i;
-            res.push_back(ans);
-        }
-        return res;
-    }
     vector<vector<int>> generate(int numRows) {
-        int n = numRows;
-        vector<vector<int>>ans;
-        for(int i = 1; i<=n; i++){
-            ans.push_back(nCr(i));
+
+        if (numRows == 0){ return {{}}; }
+        if (numRows == 1){ return {{1}}; }
+
+        vector<vector<int>> result = {{1}};
+
+        for (int i = 1; i < numRows; i++){
+            vector<int> a = {1};
+            // First element of each row is always 1
+            for (int j = 1; j < i; j++) {
+                a.push_back(result[i - 1][j] + result[i - 1][j - 1]);
+            }
+            a.push_back(1); // Last element of each row is always 1
+            result.push_back(a);
         }
-        return ans;
+    
+        return result;
     }
 };

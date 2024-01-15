@@ -1,12 +1,15 @@
 class Solution:
     def areaOfMaxDiagonal(self, dimensions: List[List[int]]) -> int:
-        n = len(dimensions)
-        maxArea = 0
-        maxDiag = 0
-        for i in range(n):
-            l, w = dimensions[i]
-            currDiag = l**2 + w**2
-            if currDiag > maxDiag or (currDiag == maxDiag and l * w > maxArea):
-                maxDiag = currDiag
-                maxArea = l * w
-        return maxArea
+        max_diag = 0
+        max_rec = 0
+        for rec in dimensions:
+            length = rec[0]
+            width = rec[1]
+            diag = (length*length) + (width*width)
+            if (diag >= max_diag):
+                if diag == max_diag:
+                    max_rec = max(max_rec, length*width)
+                else:
+                    max_diag = diag
+                    max_rec = length * width
+        return max_rec

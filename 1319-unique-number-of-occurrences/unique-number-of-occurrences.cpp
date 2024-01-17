@@ -1,22 +1,16 @@
 class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
-        int i = 0;
-        sort(arr.begin(),arr.end());
-        vector<int> ans;
-        while (i < arr.size()){
-            int count = 1;
-            for (int j = i+1; j< arr.size(); j++){
-                if (arr[i] == arr[j])
-                    count++;
-            }
-            ans.push_back(count);
-            i = i + count;
+        unordered_map<int, int> freq;
+        unordered_map<int, int> unique;
+        for(int i : arr){
+            freq[i]++;
         }
-        sort(ans.begin(),ans.end());
-        for (int i = 0; i < ans.size() - 1; i++){
-            if (ans[i] == ans [i+1])
+        for(auto i : freq){
+            if(unique.count(i.second) > 0){
                 return false;
+            }
+            unique[i.second] = 1;
         }
         return true;
     }

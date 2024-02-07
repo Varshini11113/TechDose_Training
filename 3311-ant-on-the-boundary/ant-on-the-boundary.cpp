@@ -4,7 +4,7 @@ public:
         int count = 0, sum = 0;
         for(auto i : nums){
             sum+=i;
-            if(sum == 0){
+            if(sum == 0 && i != 0){
                 count++;
             }
         }

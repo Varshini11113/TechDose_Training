@@ -2,7 +2,7 @@ class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& nums) {
         int n = nums.size();
-        int left = 0, right = 0, ans = 0, maxS = INT_MAX;
+        int left = 0, right = 0, ans = 0, minSub = INT_MAX;
         while(right < n){
             ans += nums[right];
             if(ans >= target){
@@ -10,10 +10,10 @@ public:
                     ans -= nums[left];
                     left++;
                 }
-                maxS = min(maxS, (right - left + 2));
+                minSub = min(minSub, (right - left + 2));
             }
             right++;
         }
-        return maxS == INT_MAX ? 0 : maxS;
+        return minSub == INT_MAX ? 0 : minSub;
     }
 };

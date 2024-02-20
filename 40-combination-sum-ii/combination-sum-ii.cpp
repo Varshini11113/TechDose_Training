@@ -1,32 +1,26 @@
 class Solution {
 public:
-    vector<vector<int>> result;
-    
-    void comSum(vector<int> &curr, int curInd, int sum, vector<int> &candidates, int target, int n){
-        if(sum == target){
-            result.push_back(curr);
-            return;
-        }      
-        else if(sum > target){
+    void combination(vector<int>&candidates, int target, vector<int>combo, int currSum, int currIndex, vector<vector<int>> &ans){
+        if(currSum > target) return;
+        if(currSum == target){
+            ans.push_back(combo);
             return;
         }
-        
-        for(int i = curInd; i < n; i++){
-            if(i != curInd && candidates[i] == candidates[i-1]) continue;
-            sum += candidates[i];
-            curr.push_back(candidates[i]);
-            comSum(curr, i+1, sum, candidates, target, n);
-            sum -= candidates[i];
-            curr.pop_back();
+        for(int i = currIndex; i<candidates.size(); i++){
+            if(i != currIndex && candidates[i] == candidates[i-1]) continue;
+            combo.push_back(candidates[i]);
+            currSum += candidates[i];
+            combination(candidates, target, combo, currSum, i+1, ans);
+            combo.pop_back();
+            currSum -= candidates[i];
         }
     }
-    
+
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
-        vector<int> curr;
-        int sum = 0;
-        int n = candidates.size();
-        comSum(curr, 0, sum, candidates, target, n);
-        return result;
+        vector<vector<int>> ans;
+        vector<int>combo;
+        combination(candidates, target, combo, 0, 0, ans);
+        return ans;
     }
 };

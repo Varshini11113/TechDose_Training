@@ -17,14 +17,14 @@ public:
         queue<TreeNode*>q;
         q.push(root);
         while(!q.empty()){
-            int n = q.size();
+            int size = q.size();
             vector<int>level;
-            for(int i = 0; i<n; i++){
-                TreeNode* temp = q.front();
+            for(int i = 0; i<size; i++){
+                TreeNode* node = q.front();
                 q.pop();
-                if(temp->left != NULL) q.push(temp->left);
-                if(temp->right != NULL) q.push(temp->right);
-                level.push_back(temp->val);
+                if(node->left != NULL) q.push(node->left);
+                if(node->right != NULL) q.push(node->right);
+                level.push_back(node->val);
             }
             ans.push_back(level);
         }

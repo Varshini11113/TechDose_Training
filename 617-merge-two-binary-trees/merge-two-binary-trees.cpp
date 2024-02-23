@@ -11,17 +11,13 @@
  */
 class Solution {
 public:
-    TreeNode* sum(TreeNode* s, TreeNode* t){
-        if(s && t) {
-            TreeNode* node = new TreeNode(s->val + t->val);
-            node->left = sum(s->left, t->left);
-            node->right = sum(s->right, t->right);
+    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
+        if(root1 && root2) {
+            TreeNode* node = new TreeNode(root1->val + root2->val);
+            node->left = mergeTrees(root1->left, root2->left);
+            node->right = mergeTrees(root1->right, root2->right);
             return node;
         }
-        return s ? s : t;
-    }
-    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
-        if(!root1 && !root2) return NULL;
-        return sum(root1, root2);
+        return root1 ? root1 : root2;
     }
 };

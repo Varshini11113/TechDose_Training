@@ -21,11 +21,12 @@ public:
             for(int i = 0; i<n; i++){
                 TreeNode* node = q.front();
                 q.pop();
-                if(i == n-1){
+                if(i == 0){
                     right.push_back(node->val);
                 }
-                if(node -> left != NULL) q.push(node->left);
                 if(node -> right != NULL) q.push(node->right);
+                if(node -> left != NULL) q.push(node->left);
+                
             }
         } 
         return right;

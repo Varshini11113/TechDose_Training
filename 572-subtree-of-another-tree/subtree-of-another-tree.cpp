@@ -11,16 +11,15 @@
  */
 class Solution {
 public:
-    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        if(root == NULL) return false;
-        if(isSametree(root, subRoot)) return true;
-        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
-    }
-private:
-    bool isSametree(TreeNode *s, TreeNode* t){
-        if(s==NULL && t == NULL) return true;
+    bool same(TreeNode* s, TreeNode* t){
+        if(s == NULL && t == NULL) return true;
         if(s == NULL || t == NULL) return false;
         if(s->val != t->val) return false;
-        return isSametree(s->left, t->left) && isSametree(s->right, t->right);
+        return same(s->left, t->left) && same(s->right, t->right);
+    }
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        if(root == NULL) return false;
+        if(same(root, subRoot)) return true;
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
 };

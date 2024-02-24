@@ -11,24 +11,18 @@
  */
 class Solution {
 public:
-    void inorder(TreeNode* root, vector<int>&ans){
+    vector<int>ans;
+    void inorder(TreeNode* root){
         if(root == NULL) return;
-        inorder(root->left, ans);
+        inorder(root->left);
         ans.push_back(root->val);
-        inorder(root->right, ans);
+        inorder(root->right);
     }
     bool isValidBST(TreeNode* root) {
         if(root == NULL) return false;
-        vector<int>ans;
-        inorder(root, ans);
-        int n = ans.size();
-        for(int i = 0; i<n; i++){
-            for(int j = i+1; j<n; j++){
-                if(ans[i] >= ans[j]){
-                    return false;
-                }
-            }
-            cout << ans[i] << " ";
+        inorder(root);
+        for(int i = 1; i<ans.size(); i++){
+            if(ans[i] <= ans[i-1]) return false;
         }
         return true;
     }

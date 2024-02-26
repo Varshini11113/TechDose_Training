@@ -15,13 +15,13 @@ public:
         if(root == NULL) return 0;
         int left = max(maxSum(root->left, maxi), 0);
         int right = max(maxSum(root->right, maxi), 0);
-        maxi = max(maxi, left+right+root->val);
+        maxi = max(maxi, root->val+left+right);
         return root->val + max(left, right);
     }
     int maxPathSum(TreeNode* root) {
         if(root == NULL) return 0;
-        int maximum = INT_MIN;
-        maxSum(root, maximum);
-        return maximum;
+        int maxi = INT_MIN;
+        maxSum(root, maxi);
+        return maxi;
     }
 };

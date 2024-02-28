@@ -8,66 +8,67 @@
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
-*/
+ */
 class Solution {
 public:
-    int amountTime(TreeNode* target, map<TreeNode*, TreeNode*>parent){
+    int minTime(TreeNode* root,map<TreeNode*, TreeNode*>mp){
         queue<TreeNode*>q;
-        q.push(target);
         map<TreeNode*, int>vis;
-        vis[target] = 1;
         int count = 0;
+        vis[root] = 1;
+        q.push(root);
         while(!q.empty()){
-             int flag = 0;
+            int flag = 0;
             int size = q.size();
             for(int i = 0; i<size; i++){
                 TreeNode* node = q.front();
                 q.pop();
-                if(node->left && !vis[node->left]){
+                if(node->left != NULL && !vis[node->left]){
                     flag = 1;
-                    q.push(node->left);
                     vis[node->left] = 1;
+                    q.push(node->left);
                 }
-                if(node->right && !vis[node->right]){
+                if(node->right != NULL && !vis[node->right]){
                     flag = 1;
-                    q.push(node->right);
                     vis[node->right] = 1;
+                    q.push(node->right);
                 }
-                if(parent[node] && !vis[parent[node]]){
+                if(mp[node] && !vis[mp[node]]){
                     flag = 1;
-                    q.push(parent[node]);
-                    vis[parent[node]] = 1;
+                    vis[mp[node]] = 1;
+                    q.push(mp[node]);
                 }
             }
             if(flag) count++;
         }
         return count;
     }
-    TreeNode* findParent(TreeNode* root, map<TreeNode*, TreeNode*>&parent, int start){
+    TreeNode* findTarget(TreeNode* root,map<TreeNode*, TreeNode*>&mp, int start){
         queue<TreeNode*>q;
-        TreeNode* res = NULL;
+        TreeNode* res;
         q.push(root);
         while(!q.empty()){
             TreeNode* node = q.front();
             q.pop();
-            if(node->val == start) res = node;
-            if(node->left){
-                parent[node->left] = node;
+            if(node->val == start){
+                res = node;
+            } 
+            if(node->left != NULL){
+                mp[node->left] = node;
                 q.push(node->left);
             }
-            if(node->right){
-                parent[node->right] = node;
+            if(node->right != NULL){
+                mp[node->right] = node;
                 q.push(node->right);
             }
         }
         return res;
     }
     int amountOfTime(TreeNode* root, int start) {
-    //    if(root == NULL) return 0;
-       //to find the parent elements
+        if(root == NULL) return 0;
         map<TreeNode*, TreeNode*>parent;
-        TreeNode* target = findParent(root, parent, start);
-        int time = amountTime(target, parent);
-        return time;
+        TreeNode* target = findTarget(root, parent, start);
+        int count = minTime(target, parent);
+        return count;
     }
 };

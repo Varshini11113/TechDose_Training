@@ -1,20 +1,20 @@
 class Solution {
 public:
-    void sub(vector<int>&nums, vector<vector<int>> &ans, vector<int>&ds, int ind, int n){
-        if(ind == n){
+    void findsubsets(vector<int>&nums, int i, vector<vector<int>>&ans, vector<int>&ds){
+        int n = nums.size();
+        if(i == n){
             ans.push_back(ds);
             return;
         }
-        ds.push_back(nums[ind]);
-        sub(nums, ans, ds, ind+1, n);
+        ds.push_back(nums[i]);
+        findsubsets(nums, i+1, ans, ds);
         ds.pop_back();
-        sub(nums, ans, ds, ind+1, n);
+        findsubsets(nums, i+1, ans, ds);
     }
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>>ans;
-        vector<int>ds;
-        int n = nums.size();
-        sub(nums, ans, ds, 0, n);
-        return ans;
+       vector<vector<int>>ans;
+       vector<int>ds;
+       findsubsets(nums, 0, ans, ds);
+       return ans; 
     }
 };

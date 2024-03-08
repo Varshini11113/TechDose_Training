@@ -1,25 +1,22 @@
 class Solution {
 public:
-    int maxFrequencyElements(std::vector<int>& nums) {
-        unordered_map<int, int> um;
-        for (int x : nums) {
-            um[x]++;
+    int maxFrequencyElements(vector<int>& nums) {
+        unordered_map<int,int>freq;
+        for(auto i : nums){
+            freq[i]++;
         }
-
         int maxi = 0;
-        for (auto x : um) {
-            if (x.second > maxi) {
-                maxi = x.second;
+        for(auto i : freq){
+            if(i.second > maxi){
+                maxi = i.second;
             }
         }
-
         int ans = 0;
-        for (auto x : um) {
-            if (x.second == maxi) {
+        for(auto i : freq){
+            if(i.second == maxi){
                 ans += maxi;
             }
         }
-
         return ans;
     }
 };

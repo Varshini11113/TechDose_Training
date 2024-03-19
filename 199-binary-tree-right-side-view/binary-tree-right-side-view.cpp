@@ -26,7 +26,6 @@ public:
                 }
                 if(node -> right != NULL) q.push(node->right);
                 if(node -> left != NULL) q.push(node->left);
-                
             }
         } 
         return right;

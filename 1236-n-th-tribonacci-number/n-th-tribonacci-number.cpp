@@ -1,16 +1,14 @@
 class Solution {
 public:
-    int tribonacci(int n) {
-        int t0 = 0, t1 = 1, t2 = 1;
-        if(n == 1 || n == 2) return 1;
-        if(n == 0) return 0;
-        int ans;
-        for(int i = 3; i<=n; i++){
-            ans = t0+t1+t2;
-            t0 = t1;
-            t1 = t2;
-            t2 = ans;
-        }
-        return ans;
+    int dp[38];
+    int fibo(int n) {
+        if(n == 2 || n == 1) return dp[n] = 1;
+        if(n == 0) return dp[n] = 0;
+        if(dp[n] != -1) return dp[n];
+        return dp[n] = fibo(n-1) + fibo(n-2) + fibo(n-3);
+    }
+    int tribonacci(int n){
+        memset(dp, -1, sizeof(dp));
+        return fibo(n);
     }
 };

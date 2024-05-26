@@ -9,24 +9,12 @@
  */
 
 class Solution {
-public:
-    TreeNode* find(TreeNode* root, TreeNode* p, TreeNode* q){
-        int maxi = max(p->val, q->val);
-        int mini = min(p->val, q->val);
-        while(root != NULL){
-            if(maxi < root->val){
-                root = root->left;
-            }
-            else if(mini > root->val){
-                root = root->right;
-            }
-            else
-            return root;
-        }
-        return NULL;
-    }
+public:   
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(root == NULL) return root;
-        return find(root,p,q);
+        if(root == NULL || root == p || root == q) return root;
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        if(left != NULL && right != NULL) return root;
+        return (left != NULL) ? left : right;
     }
 };

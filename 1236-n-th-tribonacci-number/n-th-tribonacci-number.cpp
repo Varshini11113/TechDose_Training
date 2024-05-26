@@ -1,16 +1,16 @@
 class Solution {
 public:
     int tribonacci(int n) {
-        int T0 = 0, T1 = 1, T2 = 1, Tn;
-        if(n == 0){
-            return 0;
-        }
+        int t0 = 0, t1 = 1, t2 = 1;
+        if(n == 1 || n == 2) return 1;
+        if(n == 0) return 0;
+        int ans;
         for(int i = 3; i<=n; i++){
-            Tn = T0 + T1+ T2;
-            T0 = T1;
-            T1 = T2;
-            T2 = Tn;
+            ans = t0+t1+t2;
+            t0 = t1;
+            t1 = t2;
+            t2 = ans;
         }
-        return T2;
+        return ans;
     }
 };

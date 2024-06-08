@@ -1,20 +1,20 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        vector<int> m(128, 0);
-        int count = 0, begin = 0, end = 0, d = 0;
-        while(end < s.size())
-        {
-            m[s[end]]++;
-            if (m[s[end]] > count) count = m[s[end]];
-            end++;
-            if (end - begin - count > k)
-            {
-                m[s[begin]]--;
-                begin++;
+        vector<int>freq(128,0);
+        int l = 0, r = 0, maxF = 0;
+        while(r < s.size()){
+            freq[s[r]]++;
+            maxF = max(maxF, freq[s[r]]);
+            r++;
+            // if((r-l+1) - maxF <= k){
+            //     maxL = max(maxL, r-l+1);
+            // }
+            if(r - l - maxF > k){
+                freq[s[l]]--;
+                l++;
             }
         }
-        d = end - begin;
-        return d;
+        return r - l;
     }
 };

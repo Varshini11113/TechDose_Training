@@ -1,10 +1,11 @@
 class Solution {
 public:
     int numIdenticalPairs(vector<int>& nums) {
-        int n = nums.size(), count = 0;
+        int n = nums.size();
+        int count = 0;
         for(int i = 0; i<n; i++){
             for(int j = i+1; j<n; j++){
-                if(nums[i] == nums[j] && i < j){
+                if(i < j && nums[i] == nums[j]){
                     count++;
                 }
             }

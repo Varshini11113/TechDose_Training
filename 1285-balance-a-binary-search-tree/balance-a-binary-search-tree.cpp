@@ -20,14 +20,14 @@ public:
     }
     TreeNode* balanceBST(TreeNode* root) {
         inorder(root);
-        return sortedArray(0, arr.size()-1);
+        return sortby(0, arr.size()-1);
     }
-    TreeNode* sortedArray(int start, int end){
+    TreeNode* sortby(int start, int end){
         if(start > end) return NULL;
-        int mid = (start + end)/2;
-        TreeNode* begin = new TreeNode(arr[mid]);
-        begin->left = sortedArray(start, mid-1);
-        begin->right = sortedArray(mid+1, end);
-        return begin;
+        int mid = (start+end)/2;
+        TreeNode* res = new TreeNode(arr[mid]);
+        res->left = sortby(start, mid-1);
+        res->right = sortby(mid+1, end);
+        return res;
     }
 };

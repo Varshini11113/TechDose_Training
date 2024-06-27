@@ -1,32 +1,21 @@
 class Solution {
 public:
-
-        void subs(vector<int>& nums , vector<vector<int>>& finans , vector<int>& ans ,int i , int n){
-
-            if(i >= n){
-                finans.push_back(ans);
-                return;
-            }
-
-            ans.push_back(nums[i]);
-            subs(nums , finans , ans , i+1 , n);
-            ans.pop_back();
-            subs(nums , finans , ans , i+1 , n );
-
-
+    void subsequence(int i, vector<int>&ele, vector<int>&nums, int n, vector<vector<int>>&ds){
+        // vector<int>ele;
+        if(i == n){
+            ds.push_back(ele);
+            return;
         }
-
-
+        ele.push_back(nums[i]);
+        subsequence(i+1, ele, nums, n, ds);
+        ele.pop_back();
+        subsequence(i+1, ele, nums, n, ds);
+    }
     vector<vector<int>> subsets(vector<int>& nums) {
-
-        vector<vector<int>> finans;
-        vector<int> ans;
+        vector<vector<int>>ds;
+        vector<int>ele;
         int n = nums.size();
-        int i = 0;
-
-        subs(nums , finans , ans , i , n);
-        return finans;
-
-        
+        subsequence(0, ele, nums, n, ds);
+        return ds;
     }
 };

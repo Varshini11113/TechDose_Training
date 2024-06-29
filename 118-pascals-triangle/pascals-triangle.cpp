@@ -1,22 +1,22 @@
 class Solution {
 public:
-    vector<vector<int>> generate(int numRows) {
-
-        if (numRows == 0){ return {{}}; }
-        if (numRows == 1){ return {{1}}; }
-
-        vector<vector<int>> result = {{1}};
-
-        for (int i = 1; i < numRows; i++){
-            vector<int> a = {1};
-            // First element of each row is always 1
-            for (int j = 1; j < i; j++) {
-                a.push_back(result[i - 1][j] + result[i - 1][j - 1]);
-            }
-            a.push_back(1); // Last element of each row is always 1
-            result.push_back(a);
+    vector<int>pascal(int n){
+        vector<int>ans;
+        ans.push_back(1);
+        long long int answer = 1;
+        for(int col = 1; col < n; col++){
+            answer *= (n - col);
+            answer /= col;
+            ans.push_back(answer);
         }
-    
-        return result;
+        // ans.push_back(answer);
+        return ans;
+    }
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>>res;
+        for(int row = 1; row <= numRows; row++){
+            res.push_back(pascal(row));
+        }
+        return res;
     }
 };
